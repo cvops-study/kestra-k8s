@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kestra-ingress
+  namespace: kestra
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - kind: Rule
+      match: PathPrefix(`/`)
+      services:
+        - name: my-kestra-service
+          port: 8080
